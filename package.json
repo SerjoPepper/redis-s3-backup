@@ -1,0 +1,21 @@
+{
+  "name": "redis-s3-backup",
+  "description": "Redis s3 backuper written on node.js",
+  "version": "0.0.1",
+  "bin": {
+    "redis-s3-backup": "./bin/redis-s3-backup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SerjoPepper/redis-s3-dumper.git"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "coffee-script": "^1.8.0",
+    "yargs": "^3.7.0",
+    "bluebird": "^2.9.6",
+    "aws-sdk": "^2.1.16",
+    "redis": "~0.8.3",
+    "moment": "2.1"
+  }
+}
