@@ -17,16 +17,15 @@ class Backup
   ###
   constructor: (@s3Options = {}, @redisOptions = {}) ->
     @s3Client = new aws.S3(@s3Options)
-    @redisClient = redisOptions.client || redis.createClient(@redisOptions.port, @redisOptions.host, @redisOptions.options)
-
+    @redisClient = @redisOptions.client || redis.createClient(@redisOptions.port, @redisOptions.host, @redisOptions.options)
 
   dump: ([fileName]..., cb) ->
-    promise.fromNode (cb) ->
-      @redisClient.save, cb
-    .get(1).then (dir) ->
+    promise.fromNode (cb) =>
+      @redisClient.save cb
+    .get(1).then (dir) =>
       promise.all [
-        promise.fromNode((cb) -> @redisClient.config 'get', 'dir', cb).get(1)
-        promise.fromNode((cb) -> @redisClient.config 'get', 'dbfilename', cb).get(1)
+        promise.fromNode((cb) => @redisClient.config 'get', 'dir', cb).get(1)
+        promise.fromNode((cb) => @redisClient.config 'get', 'dbfilename', cb).get(1)
       ]
     .spread (dir, dbfilename) =>
       promise.fromNode (callback) =>
