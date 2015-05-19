@@ -1,4 +1,4 @@
-backup = require('lib')
+backup = require('./index')
 argv = require('yargs')
   .demand(['accessKeyId', 'secretAccessKey', 'bucket'])
   .usage('Usage: $0 <command> [options]')
